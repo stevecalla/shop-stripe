@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ProductItem from '../ProductItem';
-import { useStoreContext } from '../../utils/GlobalState';
+// import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
 import { QUERY_PRODUCTS } from '../../utils/queries';
@@ -9,8 +9,8 @@ import spinner from '../../assets/spinner.gif';
 
 //section
 import { useSelector, useDispatch } from 'react-redux';
-import { useReducer } from 'react';
-import reducer from '../../utils/reducers';
+// import { useReducer } from 'react';
+// import reducer from '../../utils/reducers';
 //section end
 
 function ProductList() {
@@ -19,7 +19,7 @@ function ProductList() {
   // const { currentCategory } = state;
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
-  console.log('product query = ', data)
+  // console.log('product query = ', data)
 
   //section
   const { currentCategory } = useSelector(state => state);

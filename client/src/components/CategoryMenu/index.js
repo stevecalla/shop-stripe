@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { useStoreContext } from '../../utils/GlobalState';
+// import { useStoreContext } from '../../utils/GlobalState';
 import {
   UPDATE_CATEGORIES,
   UPDATE_CURRENT_CATEGORY,
@@ -10,8 +10,8 @@ import { idbPromise } from '../../utils/helpers';
 
 //section
 import { useDispatch, useSelector } from 'react-redux';
-import { useReducer } from 'react';
-import reducer from '../../utils/reducers';
+// import { useReducer } from 'react';
+// import reducer from '../../utils/reducers';
 //section end
 
 function CategoryMenu() {

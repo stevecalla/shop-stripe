@@ -4,7 +4,8 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  // createHttpLink,
+  HttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
@@ -14,7 +15,7 @@ import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
-import { StoreProvider } from "./utils/GlobalState";
+// import { StoreProvider } from "./utils/GlobalState";
 import Success from "./pages/Success";
 import OrderHistory from "./pages/OrderHistory";
 
@@ -23,8 +24,12 @@ import { Provider } from "react-redux";
 import store from "./utils/store";
 //section end -  added provider in return below
 
-const httpLink = createHttpLink({
-  uri: "/graphql",
+// const httpLink = createHttpLink({
+//   uri: "/graphql",
+// });
+
+const httpLink = new HttpLink({
+  uri: "http://localhost:3001/graphql"
 });
 
 const authLink = setContext((_, { headers }) => {

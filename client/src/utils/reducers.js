@@ -76,7 +76,7 @@ export default function reducer(state, action) {
     case UPDATE_CURRENT_CATEGORY:
 
       console.log(state);
-      console.log(action.currentCategory)
+      // console.log(action.currentCategory)
 
       return {
         ...state,

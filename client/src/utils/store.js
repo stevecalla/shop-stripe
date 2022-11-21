@@ -1,11 +1,11 @@
 //section
 import { createStore } from 'redux'
 import reducer from './reducers';
-import { nanoid } from '@reduxjs/toolkit'
+// import { nanoid } from '@reduxjs/toolkit'
 
 let preloadedState;
-let products;
-let categories;
+// let products;
+// let categories;
 // categories = [
 //   { _id: '1', name: 'Food' },
 //   { _id: '2', name: 'Household Supplies' },

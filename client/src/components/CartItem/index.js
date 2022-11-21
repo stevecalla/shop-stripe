@@ -1,12 +1,12 @@
 import React from 'react';
-import { useStoreContext } from "../../utils/GlobalState";
+// import { useStoreContext } from "../../utils/GlobalState";
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
 //section
-import { useSelector, useDispatch } from 'react-redux';
-import { useReducer } from 'react';
-import reducer from '../../utils/reducers';
+import { useDispatch } from 'react-redux';
+// import { useReducer } from 'react';
+// import reducer from '../../utils/reducers';
 //section end
 
 const CartItem = ({ item }) => {
