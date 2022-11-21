@@ -19,7 +19,7 @@ function ProductList() {
   // const { currentCategory } = state;
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
-  // console.log('product query = ', data)
+  console.log('product query = ', data)
 
   //section
   const { currentCategory } = useSelector(state => state);
