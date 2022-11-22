@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer } from "react";
 import {
   UPDATE_PRODUCTS,
   ADD_TO_CART,
@@ -9,7 +9,7 @@ import {
   UPDATE_CURRENT_CATEGORY,
   CLEAR_CART,
   TOGGLE_CART,
-} from './actions';
+} from "./actions";
 
 export default function reducer(state, action) {
   switch (action.type) {
@@ -30,26 +30,29 @@ export default function reducer(state, action) {
       //useEffects executes twice in React 18, strict mode while in development
       //thus duplicating items in the cart upon page refresh
       //to offset the code below creates an array of ids for state and cart
-      const stateIds = state.cart && state.cart.map(element => element._id)
-      const cartIds = action.products && action.products.map(element => element._id)
+      const stateIds = state.cart && state.cart.map((element) => element._id);
+      const cartIds =
+        action.products && action.products.map((element) => element._id);
 
       let render = [];
       //if state & cart contain the same items ids, return state to avoid duplicates
       //if state & cart don't include the same items ids, add cart to the state
-      stateIds.join() === cartIds.join() ? render = { ...state } : render = {
-        ...state,
-        cart: [...state.cart, ...action.products],
-      }
+      stateIds.join() === cartIds.join()
+        ? (render = { ...state })
+        : (render = {
+            ...state,
+            cart: [...state.cart, ...action.products],
+          });
 
       return {
-        ...render
+        ...render,
       };
 
-      //original code created duplicate items in the cart upon page refresh
-      // return {
-      //   ...state,
-      //   cart: [...state.cart, ...action.products],
-      // };
+    //original code created duplicate items in the cart upon page refresh
+    // return {
+    //   ...state,
+    //   cart: [...state.cart, ...action.products],
+    // };
 
     case UPDATE_CART_QUANTITY:
       return {
@@ -102,7 +105,7 @@ export default function reducer(state, action) {
     default:
       return state;
   }
-};
+}
 
 export function useProductReducer(initialState) {
   return useReducer(reducer, initialState);

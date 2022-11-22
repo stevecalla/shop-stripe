@@ -1,21 +1,23 @@
-import React, { useEffect } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { useLazyQuery } from '@apollo/client';
-import { QUERY_CHECKOUT } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
-import CartItem from '../CartItem';
-import Auth from '../../utils/auth';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
-import './style.css';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { useLazyQuery } from "@apollo/client";
+import { QUERY_CHECKOUT } from "../../utils/queries";
+import { idbPromise } from "../../utils/helpers";
+import CartItem from "../CartItem";
+import Auth from "../../utils/auth";
+import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
+import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
 
-const stripePromise = loadStripe('pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx');
+const stripePromise = loadStripe(
+  "pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx"
+);
 
 const Cart = () => {
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
-  const { cart, cartOpen } = useSelector(state => state);
-  
+  const { cart, cartOpen } = useSelector((state) => state);
+
   let dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,16 +29,14 @@ const Cart = () => {
   }, [data]);
 
   useEffect(() => {
-    
     async function getCart() {
-      const cart = await idbPromise('cart', 'get');
+      const cart = await idbPromise("cart", "get");
       dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
     }
 
     if (!cart.length) {
       getCart();
     }
-
   }, [cart.length, dispatch]);
 
   function toggleCart() {

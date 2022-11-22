@@ -22,7 +22,7 @@ import { Provider } from "react-redux";
 import store from "./utils/store";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:3001/graphql"
+  uri: "http://localhost:3001/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -46,16 +46,16 @@ function App() {
       <Router>
         <div>
           <Provider store={store}>
-              <Nav />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/success" element={<Success />} />
-                <Route path="/orderHistory" element={<OrderHistory />} />
-                <Route path="/products/:id" element={<Detail />} />
-                <Route path="*" element={<NoMatch />} />
-              </Routes>
+            <Nav />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/success" element={<Success />} />
+              <Route path="/orderHistory" element={<OrderHistory />} />
+              <Route path="/products/:id" element={<Detail />} />
+              <Route path="*" element={<NoMatch />} />
+            </Routes>
           </Provider>
         </div>
       </Router>
