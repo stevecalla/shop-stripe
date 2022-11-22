@@ -4,7 +4,6 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  // createHttpLink,
   HttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
@@ -15,18 +14,12 @@ import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
-// import { StoreProvider } from "./utils/GlobalState";
 import Success from "./pages/Success";
 import OrderHistory from "./pages/OrderHistory";
 
-//section
+// code added to use Redux global state management
 import { Provider } from "react-redux";
 import store from "./utils/store";
-//section end -  added provider in return below
-
-// const httpLink = createHttpLink({
-//   uri: "/graphql",
-// });
 
 const httpLink = new HttpLink({
   uri: "http://localhost:3001/graphql"
@@ -53,7 +46,6 @@ function App() {
       <Router>
         <div>
           <Provider store={store}>
-            {/* <StoreProvider> */}
               <Nav />
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -64,7 +56,6 @@ function App() {
                 <Route path="/products/:id" element={<Detail />} />
                 <Route path="*" element={<NoMatch />} />
               </Routes>
-            {/* </StoreProvider> */}
           </Provider>
         </div>
       </Router>

@@ -23,6 +23,10 @@ const Cart = () => {
 
   //section
   const { cart, cartOpen } = useSelector(state => state);
+  
+  console.log({cart});
+  console.log({cartOpen})
+
   let dispatch = useDispatch();
   //section end
 

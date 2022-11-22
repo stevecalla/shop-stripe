@@ -31,6 +31,7 @@ export default function reducer(state, action) {
         ...state,
         cart: [...state.cart, ...action.products],
       };
+
     case UPDATE_CART_QUANTITY:
       return {
         ...state,
@@ -74,10 +75,6 @@ export default function reducer(state, action) {
       };
 
     case UPDATE_CURRENT_CATEGORY:
-
-      console.log(state);
-      // console.log(action.currentCategory)
-
       return {
         ...state,
         currentCategory: action.currentCategory,

@@ -51,7 +51,7 @@ To convert this app from Reacts Context API to React Redux the following steps w
 1. Add `store.js` to manage global state.
 2. Add the `<Provider>` compenent/wrapper to the `App.js` code.
 3. Adjust each component or page to include useSelector (to get access to state) and/or useDispath (to execute actions).
-4. ....
+4. Details.js (page), Cart (component)
 
 ## Technology
 
