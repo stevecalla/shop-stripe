@@ -23,7 +23,11 @@ const Cart = () => {
     if (data) {
       stripePromise.then((res) => {
         res.redirectToCheckout({ sessionId: data.checkout.session });
+
+        // section
+        console.log(res.redirectToCheckout({ sessionId: data.checkout.session }));
       });
+      
     }
   }, [data]);
 
@@ -51,6 +55,10 @@ const Cart = () => {
   }
 
   function submitCheckout() {
+
+    //section
+    console.log(`submitCheckout`);
+
     const productIds = [];
 
     cart.forEach((item) => {
@@ -62,6 +70,9 @@ const Cart = () => {
     getCheckout({
       variables: { products: productIds },
     });
+
+    //section
+    console.log(`submitCheckout`, cart);
   }
 
   if (!cartOpen) {
@@ -101,7 +112,7 @@ const Cart = () => {
           <span role="img" aria-label="shocked">
             😱
           </span>
-          You haven't added anything to your cart yet!
+          `You haven't added anything to your cart yet!`
         </h3>
       )}
     </div>
