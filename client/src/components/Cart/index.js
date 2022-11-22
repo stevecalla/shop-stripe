@@ -19,21 +19,21 @@ const Cart = () => {
   
   let dispatch = useDispatch();
   
-  useEffect(() => {
-    // section
-    console.log('useeffect')
-    console.log(data);
+  // useEffect(() => {
+  //   // section
+  //   console.log('useeffect')
+  //   console.log(data);
     
-    if (data) {
-      stripePromise.then((res) => {
-        res.redirectToCheckout({ sessionId: data.checkout.session });
+  //   if (data) {
+  //     stripePromise.then((res) => {
+  //       res.redirectToCheckout({ sessionId: data.checkout.session });
 
-        // section
-        console.log(res.redirectToCheckout({ sessionId: data.checkout.session }));
-      });
+  //       // section
+  //       console.log(res.redirectToCheckout({ sessionId: data.checkout.session }));
+  //     });
       
-    }
-  }, [data]);
+  //   }
+  // }, [data]);
 
   useEffect(() => {
     async function getCart() {
@@ -58,7 +58,7 @@ const Cart = () => {
     return sum.toFixed(2);
   }
 
-  function submitCheckout() {
+  async function submitCheckout() {
 
     //section
     console.log(`submitCheckout`);
@@ -71,12 +71,28 @@ const Cart = () => {
       }
     });
 
-    getCheckout({
-      variables: { products: productIds },
-    });
+    // getCheckout({
+    //   variables: { products: productIds },
+    // });
 
     //section
     console.log(`submitCheckout`, cart);
+
+    let test =  await getCheckout({
+      variables: { products: productIds },
+    });
+
+    console.log({test})
+    console.log(test.checkout)
+
+    if (test) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: test.data.checkout.session });
+
+        // section
+        console.log(res.redirectToCheckout({ sessionId: test.data.checkout.session }));
+      });
+    }
   }
 
   if (!cartOpen) {
