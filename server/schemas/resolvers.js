@@ -91,6 +91,8 @@ const resolvers = {
         cancel_url: `${url}/`,
       });
 
+      console.log('resolver = ', session)
+
       return { session: session.id };
     },
   },
