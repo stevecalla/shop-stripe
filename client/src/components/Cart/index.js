@@ -24,8 +24,8 @@ const Cart = () => {
   //section
   const { cart, cartOpen } = useSelector(state => state);
   
-  console.log({cart});
-  console.log({cartOpen})
+  // console.log({cart});
+  // console.log({cartOpen})
 
   let dispatch = useDispatch();
   //section end
@@ -39,6 +39,9 @@ const Cart = () => {
   }, [data]);
 
   useEffect(() => {
+
+    console.log('useeffect =', {cart});
+
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
       dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
@@ -47,6 +50,7 @@ const Cart = () => {
     if (!cart.length) {
       getCart();
     }
+
   }, [cart.length, dispatch]);
 
   function toggleCart() {
