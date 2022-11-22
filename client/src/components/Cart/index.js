@@ -5,30 +5,18 @@ import { QUERY_CHECKOUT } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
-// import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './style.css';
-
-//section
 import { useDispatch, useSelector } from 'react-redux';
-// import { useReducer } from 'react';
-// import reducer from '../../utils/reducers';
-//section end
 
 const stripePromise = loadStripe('pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx');
 
 const Cart = () => {
-  // const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
-  //section
   const { cart, cartOpen } = useSelector(state => state);
   
-  // console.log({cart});
-  // console.log({cartOpen})
-
   let dispatch = useDispatch();
-  //section end
 
   useEffect(() => {
     if (data) {
@@ -39,9 +27,7 @@ const Cart = () => {
   }, [data]);
 
   useEffect(() => {
-
-    console.log('useeffect =', {cart});
-
+    
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
       dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
