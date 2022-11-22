@@ -1,23 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
-// import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
-
-//section
 import { useDispatch, useSelector } from 'react-redux';
-// import { useReducer } from 'react';
-// import reducer from '../../utils/reducers';
-//section end
 
 function ProductItem(item) {
-  // const [state, dispatch] = useStoreContext();
-
-  //section
   const { cart } = useSelector(state => state);
   let dispatch = useDispatch();
-  //section end
 
   const {
     image,
@@ -26,8 +16,6 @@ function ProductItem(item) {
     price,
     quantity
   } = item;
-
-  // const { cart } = state
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
