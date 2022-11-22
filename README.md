@@ -69,7 +69,7 @@ To convert this app from Reacts Context API to React Redux the following steps w
 
 Video #1: Demonstrates all of the content, functional and technical acceptance criteria.
 
-[Link to WalkThrough Video](https://youtu.be/XXe5NX0E9NM)
+[Link to WalkThrough Video](https://youtu.be/BAm6qmxFOb0)
 
 ![Build & deploy video](./assets/demo-video.gif)
 
