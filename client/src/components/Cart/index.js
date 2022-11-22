@@ -64,6 +64,7 @@ const Cart = () => {
     return sum.toFixed(2);
   }
 
+  let count = 0;
   async function submitCheckout() {
 
     //section
@@ -89,9 +90,9 @@ const Cart = () => {
     });
 
     console.log({basket})
-    console.log(basket.data.checkout)
+    // console.log(basket.data.checkout)
 
-    setTest(basket)
+    // setTest(basket)
 
     const stripePromise = loadStripe("pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx");
     // const stripePromise = [];
@@ -103,6 +104,9 @@ const Cart = () => {
         // section
         console.log(res.redirectToCheckout({ sessionId: basket.data.checkout.session }));
       });
+    } else if (count < 5) {
+      count = count + 1;
+      submitCheckout();
     }
   }
 
