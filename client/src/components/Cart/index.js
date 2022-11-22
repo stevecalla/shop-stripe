@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CHECKOUT } from "../../utils/queries";
@@ -13,27 +13,29 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 // const stripePromise = loadStripe("pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx");
 
 const Cart = () => {
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+  const [ test, setTest ] = useState();
+  const [ getCheckout, { data } ] = useLazyQuery(QUERY_CHECKOUT);
 
   const { cart, cartOpen } = useSelector((state) => state);
   
   let dispatch = useDispatch();
   
-  // useEffect(() => {
-  //   // section
-  //   console.log('useeffect')
-  //   console.log(data);
+  useEffect(() => {
+    // section
+    console.log('useeffect')
+    console.log(data);
     
-  //   if (data) {
-  //     stripePromise.then((res) => {
-  //       res.redirectToCheckout({ sessionId: data.checkout.session });
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: data.checkout.session });
 
-  //       // section
-  //       console.log(res.redirectToCheckout({ sessionId: data.checkout.session }));
-  //     });
+        // section
+        console.log(res.redirectToCheckout({ sessionId: data.checkout.session }));
+      });
       
-  //   }
+    }
   // }, [data]);
+  }, [test]);
 
   useEffect(() => {
     async function getCart() {
@@ -78,21 +80,23 @@ const Cart = () => {
     //section
     console.log(`submitCheckout`, cart);
 
-    let test =  await getCheckout({
+    let basket =  await getCheckout({
       variables: { products: productIds },
     });
 
-    console.log({test})
-    console.log(test.checkout)
+    console.log({basket})
+    console.log(basket.checkout)
 
-    if (test) {
-      stripePromise.then((res) => {
-        res.redirectToCheckout({ sessionId: test.data.checkout.session });
+    setTest(basket)
 
-        // section
-        console.log(res.redirectToCheckout({ sessionId: test.data.checkout.session }));
-      });
-    }
+    // if (basket) {
+    //   stripePromise.then((res) => {
+    //     res.redirectToCheckout({ sessionId: basket.data.checkout.session });
+
+    //     // section
+    //     console.log(res.redirectToCheckout({ sessionId: basket.data.checkout.session }));
+    //   });
+    // }
   }
 
   if (!cartOpen) {
