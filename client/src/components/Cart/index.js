@@ -104,10 +104,11 @@ const Cart = () => {
         // section
         console.log(res.redirectToCheckout({ sessionId: basket.data.checkout.session }));
       });
-    } else if (count < 5) {
-      count = count + 1;
-      submitCheckout();
-    }
+    } 
+    // else if (count < 5) {
+    //   count = count + 1;
+    //   submitCheckout();
+    // }
   }
 
   if (!cartOpen) {
