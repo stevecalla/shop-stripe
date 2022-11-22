@@ -1,6 +1,6 @@
 //section
-import { createStore } from 'redux'
-import reducer from './reducers';
+import { createStore } from "redux";
+import reducer from "./reducers";
 
 let preloadedState;
 preloadedState = {
@@ -8,12 +8,13 @@ preloadedState = {
   cart: [],
   cartOpen: false,
   categories: [],
-  currentCategory: '',
-}
+  currentCategory: "",
+};
 
-
-export const store = createStore(reducer, preloadedState,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-console.log(store.getState());
+export const store = createStore(
+  reducer,
+  preloadedState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;
