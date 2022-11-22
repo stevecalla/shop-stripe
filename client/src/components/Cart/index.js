@@ -9,8 +9,8 @@ import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
-// const stripePromise = loadStripe("pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx");
+// const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+// const stripePromise = await loadStripe("pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx");
 
 const Cart = () => {
   const [ test, setTest ] = useState();
@@ -20,22 +20,26 @@ const Cart = () => {
   
   let dispatch = useDispatch();
   
-  useEffect(() => {
-    // section
-    console.log('useeffect')
-    console.log(data);
-    
-    if (data) {
-      stripePromise.then((res) => {
-        res.redirectToCheckout({ sessionId: data.checkout.session });
+  // useEffect(() => {
+  //   // section
+  //   console.log('useeffect')
+  //   console.log(data);
 
-        // section
-        console.log(res.redirectToCheckout({ sessionId: data.checkout.session }));
-      });
+  //   console.log(stripePromise)
+    
+  //   if (data) {
+  //     stripePromise
+  //       .then((res) => {
+  //         console.log(res)
+  //         res.redirectToCheckout({ sessionId: data.checkout.session });
+
+  //       // section
+  //       // console.log(res.redirectToCheckout({ sessionId: data.checkout.session }));
+  //     });
       
-    }
-  // }, [data]);
-  }, [test]);
+  //   }
+  // // }, [data]);
+  // }, [test]);
 
   useEffect(() => {
     async function getCart() {
@@ -85,18 +89,21 @@ const Cart = () => {
     });
 
     console.log({basket})
-    console.log(basket.checkout)
+    console.log(basket.data.checkout)
 
     setTest(basket)
 
-    // if (basket) {
-    //   stripePromise.then((res) => {
-    //     res.redirectToCheckout({ sessionId: basket.data.checkout.session });
+    const stripePromise = loadStripe("pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx");
+    // const stripePromise = [];
 
-    //     // section
-    //     console.log(res.redirectToCheckout({ sessionId: basket.data.checkout.session }));
-    //   });
-    // }
+    if (basket) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: basket.data.checkout.session });
+
+        // section
+        console.log(res.redirectToCheckout({ sessionId: basket.data.checkout.session }));
+      });
+    }
   }
 
   if (!cartOpen) {
