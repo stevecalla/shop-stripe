@@ -93,10 +93,10 @@ const Cart = () => {
 
     setTest(basket)
 
-    // const stripePromise = loadStripe("pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx");
-    const stripePromise = [];
+    const stripePromise = loadStripe("pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx");
+    // const stripePromise = [];
 
-    if (basket) {
+    if (basket.data.checkout.session) {
       stripePromise.then((res) => {
         res.redirectToCheckout({ sessionId: basket.data.checkout.session });
 
