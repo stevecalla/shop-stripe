@@ -1,4 +1,4 @@
-# MERN: Book - Search Engine
+# MERN - Redux: Store - Stripe Ecommerce
 [![License:  MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Index
@@ -13,13 +13,17 @@
 8. [License](#license)
 
 ## Description
-AS AN avid reader
-I WANT to search for new books to read
-SO THAT I can keep a list of books to purchase
-```
-This app is a search engine that allows users to find/search and save books that the user would like to read (or purchase or share).
 
-The objective of this project was to convert a RESTful MERN (Mongo, Express, React, Node) API to a GraphQL/Apollo MERN API.
+```
+AS a senior engineer working on an e-commerce platform
+I WANT my platform to use Redux to manage global state instead of the Context API
+SO THAT my website's state management is taken out of the React ecosystem
+```
+
+```
+This app is an ecommerce shopping engine that allows a user to select products, add items to a shopping cart and checkout of the cart using Stripe to make payment.
+
+The objective of this project was to convert this e-commerce platform from using React's Context API to React Redux to manage global state. This project uses a MERN (Mongo, Express, React, Node) stack as well as GraphQL/Apollo and React Redux.
 
 ```
 
@@ -30,32 +34,24 @@ Setup:
 
 ## Usage
 
-This app is deployed using Heroku. From a development perspective, this app uses Node.js, Mongo, React and Apollo/GraphQL. See the technology list below for more detail.
+This app is deployed using Heroku. See the technology list below for more detail.
 
 ## Features
 
 This app includes a variety of API routes (see list below). In addition, the following features exist.
 
 1. `Single-page app` built using React.
-2. `Component` based approach which breaks down each page and major function. For example, the header, footer and each navigation bar link is a unique component.
-3. `Bootstap` is used for the majority of the html and css including the nav bar, cards, and form.
+2. `Component` based approach which breaks down each page and major component. For example, it includes components for the cart, cart items, nav, product item and product list.
+3. `Redux API` includes a `store`, `actions`, and `reducers` while using `useDispatch` and `useSelector`.
 4. `Search Book` and `Saved Book` pages. 
-5. `Saved Book` presents cards for each saved book with cover image, title, author, description and link to google books.
-6. `Search Book` presnets a `search box` search functionality that accepts user input then uses a `fetch` to search the google book api using the user input.
-7. `Login`, `Signup`, and `Logout` functionality using a bootstrap modal, jsonwebtoken for authentication and alert messaging for invalid login.
-8. Upon `login` the user then has the ability to save one or more books based on the search results. After saving a book the book is listed on the "see my books" page via a link in the nav bar. On the "saved book" screen a loggedin user has the option to remove (delete) books.
-9. `User` login information is used to `save` books to a specific user rather than expose the user information in the URL via parameters (params).
-10. `Heroku` deployment.
+5. `Heroku` deployment.
 
-## Future Enhancements: 
-1. Breakdown code into `smaller components` for readability, maintainability and reduce duplication.
-2. Enhance to a `PWA` to work both on- and off-line.
-3. Enhance search options and google api with more `customized google search results` (newest, max results, author et al).
-4. Provide user with more advance `self-select search options` (e.g. search by title, author, newest, number of results).
-5. Update `password, username and email verification standards` and functionality.
-6. Upgrade `login` and `signup` to include `tooltip & required field` messages.
-7. Add `Share` functionality so the user can share a book with others via email and/or text message.
-8. Upgrade backend to use `Apollo cache` rather than local storage.
+## Conversion to Redux:
+To convert this app from Reacts Context API to React Redux the following steps were taken:
+1. Add `store.js` to manage global state.
+2. Add the `<Provider>` compenent/wrapper to the `App.js` code.
+3. Adjust each component or page to include useSelector (to get access to state) and/or useDispath (to execute actions).
+4. ....
 
 ## Technology
 
@@ -65,8 +61,9 @@ This app includes a variety of API routes (see list below). In addition, the fol
 4. `React-Bootstrap`: For most of the CSS styling.
 5. `Apollo/GraphQL`: For GraphQL database query.
 6. `bcrypt`: To encrypt the user password.
-7. `jsonwebtoken/jwt decoe`: For user authentication and token decoding.
+7. `jsonwebtoken/jwt decode`: For user authentication and token decoding.
 8. `Heroku`: Deployment.
+9. `React Redux`: To manage global state.
 ---
 
 ## App Preview - WalkThrough Video
@@ -90,10 +87,10 @@ Contributor Covenant Code of Conduct
 ## Resources
 
 1. Project Manager: [Steve Calla - GitHub Profile](https://github.com/stevecalla)
-2. GitHub Repo #1 - Deployed: [LINK](https://github.com/stevecalla/book-search-engine-v2)
-3. GitHub Repo #2 - Original: [LINK](https://github.com/stevecalla/book-search-engine)
+2. GitHub Repo #1 - Deployed: [LINK](https://github.com/stevecalla/shop-stripe)
+3. GitHub Repo #2 - Original: [LINK](https://github.com/stevecalla/store-stripe)
     * Note Repo #2 would not deploy to Heroku. After multiple attempts, repo was rebuilt in most recent version of create react as represented by Repo #1 above. Repo #2 includes the vast majority of the development commit information.
-4. Deployed Site URL - Heroku: [LINK](https://book-search-engine-calla.herokuapp.com/)
+4. Deployed Site URL - Heroku: [LINK](https://shop-stripe.herokuapp.com/ )
 5. Contact: [Email Steve](mailto:callasteven@gmail.com)
 
 ## License 
