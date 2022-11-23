@@ -22,7 +22,8 @@ import { Provider } from "react-redux";
 import store from "./utils/store";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:3001/graphql",
+  // uri: "http://localhost:3001/graphql",
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
