@@ -1,5 +1,6 @@
 const db = require('./connection');
 const { User, Product, Category } = require('../models');
+require("dotenv").config();
 
 db.once('open', async () => {
   await Category.deleteMany();
