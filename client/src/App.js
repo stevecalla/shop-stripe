@@ -27,7 +27,7 @@ import store from "./utils/store";
 // });
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: process.env.NODE_ENV === 'development' ? "http://localhost:3001/graphql" : "/graphql"
   // uri: "/graphql",
 });
 
