@@ -12,7 +12,6 @@ import { QUERY_PRODUCTS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
 import spinner from "../assets/spinner.gif";
 import { useSelector, useDispatch } from "react-redux";
-//section end
 
 function Detail() {
   const { id } = useParams();
@@ -21,10 +20,8 @@ function Detail() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  //section
   const { cart, products } = useSelector((state) => state);
   let dispatch = useDispatch();
-  //section end
 
   useEffect(() => {
     // already in global store
