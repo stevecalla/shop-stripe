@@ -9,7 +9,6 @@ import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 
-// const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 const stripePromise = loadStripe("pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx");
 
 const Cart = () => {
@@ -23,8 +22,6 @@ const Cart = () => {
     if (data) {
       stripePromise
         .then((res) => {
-          console.log({data})
-          console.log({res})
           res.redirectToCheckout({ sessionId: data.checkout.session });
       });
     }
@@ -54,10 +51,6 @@ const Cart = () => {
   }
 
   async function submitCheckout() {
-
-    //section
-    console.log(`submitCheckout`);
-
     const productIds = [];
 
     cart.forEach((item) => {
@@ -69,27 +62,6 @@ const Cart = () => {
     getCheckout({
       variables: { products: productIds },
     });
-
-    //section
-    // console.log(`submitCheckout`, cart);
-
-    // let basket =  await getCheckout({
-    //   variables: { products: productIds },
-    // });
-
-    // console.log({basket})
-    // console.log(basket.data)
-
-    // setTest(basket)
-
-    // if (basket.data) {
-    //   stripePromise.then((res) => {
-    //     res.redirectToCheckout({ sessionId: basket.data.checkout.session });
-
-    //     console.log(res.redirectToCheckout({ sessionId: basket.data.checkout.session }));
-    //   });
-    // } 
-    // section end
   }
 
   if (!cartOpen) {
