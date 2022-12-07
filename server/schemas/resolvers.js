@@ -88,8 +88,10 @@ const resolvers = {
         payment_method_types: ["card"],
         line_items,
         mode: "payment",
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`,
+        // success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${process.env.STRIPE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+        // cancel_url: `${url}/`,
+        cancel_url: `${process.env.STRIPE_URL}/`,
       });
 
       console.log('session = ', session)
