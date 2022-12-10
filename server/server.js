@@ -31,15 +31,17 @@ app.get("/", (req, res) => {
 });
 
 //section
+// stripe = require('stripe')(process.env.STRIPE_SECRET_KEY_TEST);
 
-stripe = require('stripe')(process.env.STRIPE_SECRET_KEY_TEST);
+// app.get('/success', async (req, res) => {
 
-app.get('/success', async (req, res) => {
-  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-  const customer = await stripe.customers.retrieve(session.customer);
+//   console.log(req);
 
-  res.send(`<html><body><h1>Thanks for your order, ${customer.name}!</h1></body></html>`);
-});
+//   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+//   const customer = await stripe.customers.retrieve(session.customer);
+
+//   res.send(`<html><body><h1>Thanks for your order, ${customer.name}!</h1></body></html>`);
+// });
 //section
 
 // Create a new instance of an Apollo server with the GraphQL schema

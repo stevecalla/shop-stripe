@@ -93,10 +93,25 @@ const resolvers = {
         // cancel_url: `${url}/`,
         cancel_url: `${process.env.STRIPE_URL}/`,
       });
+      
 
       console.log('session = ', session)
 
       return { session: session.id };
+    },
+
+    success: async (parent, args, context) => {
+
+      console.log(args)
+
+      let stripe = require('stripe')(process.env.STRIPE_SECRET_KEY_TEST);
+
+      const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+
+      const customer = await stripe.customers.retrieve(session.customer);
+    
+      res.send(`<html><body><h1>Thanks for your order, ${customer.name}!</h1></body></html>`);
+
     },
   },
   Mutation: {
