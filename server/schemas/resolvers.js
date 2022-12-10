@@ -100,7 +100,7 @@ const resolvers = {
       return { session: session.id };
     },
 
-    success: async (parent, args, context) => {
+    success: async (parent, { req }, context) => {
 
       console.log(args)
 
