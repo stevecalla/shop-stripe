@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   function showNavigation() {
-    if (Auth.loggedIn()) {
+    // if (Auth.loggedIn()) {
       return (
+        <>
         <ul className="flex-row">
           <li className="mx-1">
             <Link to="/orderHistory">Order History</Link>
@@ -17,9 +18,9 @@ function Nav() {
             </a>
           </li>
         </ul>
-      );
-    } else {
-      return (
+      {/* ); */}
+     {/* } else { */}
+      {/* return ( */}
         <ul className="flex-row">
           <li className="mx-1">
             <Link to="/signup">Signup</Link>
@@ -28,8 +29,9 @@ function Nav() {
             <Link to="/login">Login</Link>
           </li>
         </ul>
-      );
-    }
+    </>
+     );
+    {/* } */}
   }
 
   return (
