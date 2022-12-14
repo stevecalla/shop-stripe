@@ -30,7 +30,7 @@ const resolvers = {
       return await Product.findById(_id).populate("category");
     },
     user: async (parent, args, context) => {
-      if (context.user) {
+      // if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: "orders.products",
           populate: "category",
@@ -39,21 +39,19 @@ const resolvers = {
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
         return user;
-      }
-
-      throw new AuthenticationError("Not logged in");
+      // }
+      // throw new AuthenticationError("Not logged in");
     },
     order: async (parent, { _id }, context) => {
-      if (context.user) {
+      // if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: "orders.products",
           populate: "category",
         });
 
         return user.orders.id(_id);
-      }
-
-      throw new AuthenticationError("Not logged in");
+      // }
+      // throw new AuthenticationError("Not logged in");
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
@@ -101,7 +99,7 @@ const resolvers = {
     },
 
     success: async (parent, { req }, context) => {
-      
+
       console.log('success =', req)
 
       console.log(req)
