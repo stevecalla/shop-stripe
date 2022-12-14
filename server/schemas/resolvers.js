@@ -101,16 +101,22 @@ const resolvers = {
     },
 
     success: async (parent, { req }, context) => {
+      
+      console.log('success =', req)
 
-      console.log(args)
+      console.log(req)
 
-      let stripe = require('stripe')(process.env.STRIPE_SECRET_KEY_TEST);
+      // let stripe = require('stripe')(process.env.STRIPE_SECRET_KEY_TEST);
 
       const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
 
       const customer = await stripe.customers.retrieve(session.customer);
     
       res.send(`<html><body><h1>Thanks for your order, ${customer.name}!</h1></body></html>`);
+
+      return { session: session.id };
+
+      // https://shop-stripe.herokuapp.com/success?session_id=cs_test_a1E01bA1iInGNJs3QrydMhC4wwyXe1yhgP1Tm9nrICr5yxIeliwkbYci1W
 
     },
   },
